@@ -8,7 +8,7 @@ Copyright 2021 Creative Tim (https://www.creative-tim.com)
 Coded by Creative Tim
 
 =========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
 import Vue from 'vue'
@@ -19,11 +19,15 @@ import DefaultLayout from './layouts/Default.vue'
 import DashboardLayout from './layouts/Dashboard.vue'
 import DashboardRTLLayout from './layouts/DashboardRTL.vue'
 import router from './router'
+import axiosHttp from "./axios";
+import 'sweetalert2/dist/sweetalert2.min.css';
+import VueSweetalert2 from 'vue-sweetalert2';
 // import './plugins/click-away'
 
 import './scss/app.scss';
-
 Vue.use(Antd);
+
+Vue.use(VueSweetalert2);
 
 Vue.config.productionTip = false
 
@@ -31,7 +35,8 @@ Vue.config.productionTip = false
 Vue.component("layout-default", DefaultLayout);
 Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
-
+Vue.prototype.$http = axiosHttp
+Vue.prototype.$eventBus = new Vue();
 new Vue({
   router,
   render: h => h(App)

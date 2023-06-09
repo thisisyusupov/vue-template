@@ -36,6 +36,24 @@ let routes = [
 		component: () => import('../views/Tables.vue'),
 	},
 	{
+		path: '/selling',
+		name: 'Selling',
+		layout: "dashboard",
+		component: () => import('../views/selling/Sellling.vue'),
+	},
+	{
+		path: '/report',
+		name: 'Report',
+		layout: "dashboard",
+		component: () => import('../views/Report.vue'),
+	},
+	{
+		path: '/selling/add',
+		name: 'SellingAdd',
+		layout: "dashboard",
+		component: () => import('../views/selling/SellingAdd.vue'),
+	},
+	{
 		path: '/billing',
 		name: 'Billing',
 		layout: "dashboard",
@@ -80,7 +98,7 @@ function addLayoutToRoute( route, parentLayout = "default" )
 {
 	route.meta = route.meta || {} ;
 	route.meta.layout = route.layout || parentLayout ;
-	
+
 	if( route.children )
 	{
 		route.children = route.children.map( ( childRoute ) => addLayoutToRoute( childRoute, route.meta.layout ) ) ;
