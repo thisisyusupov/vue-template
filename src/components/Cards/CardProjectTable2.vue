@@ -19,9 +19,9 @@
 		</template>
 		<a-table :columns="columns" :data-source="data" :pagination="false">
 
-			<template slot="name" slot-scope="text">
-				<a>{{ text }}</a>
-			</template>
+<!--			<template slot="name" slot-scope="text">-->
+<!--				<a>{{ text }}</a>-->
+<!--			</template>-->
 
 			<a-space slot="members" slot-scope="members" :size="-12" class="avatar-chips">
 				<template v-for="member in members">

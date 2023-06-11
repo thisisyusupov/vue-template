@@ -24,8 +24,8 @@
             <a-form
                 id="components-form-demo-normal-login"
             >
-              <a-form-item class="mb-10" label="List Number" :colon="false">
-                <a-input v-model="selling.listNumber"
+              <a-form-item  class="mb-10" label="List Number" :colon="false">
+                <a-input  v-model="selling.listNumber"
                          v-decorator="[
 						'listNumber',
 						{ rules: [{ required: true, message: 'Please input your list number!' }] },
@@ -40,7 +40,7 @@
               </a-form-item>
 
               <a-form-item label="Payment type">
-                <a-select v-model:value="selling.paymentTypeId" placeholder="Please select your payment type">
+                <a-select class="sell" v-model:value="selling.paymentTypeId" placeholder="Please select your payment type">
                   <a-select-option value="1">Naqd</a-select-option>
                   <a-select-option value="2">Nasiya</a-select-option>
                   <a-select-option value="3">Avans</a-select-option>
@@ -48,7 +48,7 @@
               </a-form-item>
 
               <a-form-item label="Product type" required>
-                <a-select v-model:value="selling.productId" placeholder="Please select your product type">
+                <a-select v-model:value="selling.productTypeId" placeholder="Please select your product type">
                   <a-select-option value="1">Qum</a-select-option>
                   <a-select-option value="2">Shlaka blok</a-select-option>
                   <a-select-option value="3">G'isht</a-select-option>
@@ -56,7 +56,7 @@
               </a-form-item>
 
               <a-form-item label="Unit type" required>
-                <a-select v-model="selling.unitId" placeholder="Please select your unit type">
+                <a-select v-model="selling.unitTypeId" placeholder="Please select your unit type">
                   <a-select-option value="1">Dona</a-select-option>
                   <a-select-option value="2">Kg</a-select-option>
                   <a-select-option value="3">Kamaz</a-select-option>
@@ -104,6 +104,8 @@
 <script>
 
 
+import router from "../../router";
+
 export default ({
   data() {
     return {
@@ -112,8 +114,8 @@ export default ({
         listNumber: '0',
         date: '2010-10-01',
         paymentTypeId: 0,
-        productId: 0,
-        unitId: 0,
+        productTypeId: 0,
+        unitTypeId: 0,
         amount: 0,
         cost: 0,
         value: 0
@@ -130,9 +132,15 @@ export default ({
       console.log(this.selling)
       this.selling.value = this.selling.amount * this.selling.cost;
       this.$http.post('selling/add', this.selling).then(() => {
-        this.$swal.fire('Saved', '', 'Success')
+        this.$swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your data has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
         // this.showSellItemModal = false
-        this.$eventBus.$emit('selling')
+        router.push("/selling")
       })
     },
 
@@ -143,4 +151,8 @@ export default ({
 </script>
 
 <style lang="scss">
+label{
+  font-size: 17px;
+}
+
 </style>

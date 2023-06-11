@@ -35,7 +35,7 @@ const table2Columns = [
   {
     title: 'LIST NUMBER',
     dataIndex: 'listNumber',
-    scopedSlots: { customRender: 'company' },
+    scopedSlots: { customRender: 'listNumber' },
     width: 200,
   },
   {
@@ -45,13 +45,13 @@ const table2Columns = [
   },
   {
     title: 'PAYMENT TYPE',
-    dataIndex: 'paymentType',
+    dataIndex: 'paymentType.name',
     class: 'font-semibold text-muted text-sm',
   },
   {
     title: 'PRODUCT TYPE',
     scopedSlots: { customRender: 'productType' },
-    dataIndex: 'productType',
+    dataIndex: 'productType.name',
   },
   {
     title: 'VALUE',
@@ -92,7 +92,7 @@ export default ({
   },
   methods: {
     getSellingList() {
-      this.$http.post('/selling/list').then(res => {
+      this.$http.get('/selling').then(res => {
         this.sellingList = res.data
         console.log(res.data)
         console.log(this.sellingList)

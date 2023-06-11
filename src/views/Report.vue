@@ -70,8 +70,19 @@ export default ({
 
     download() {
       console.log(this.report)
-      this.$http.post('report', this.report).then(() => {
-        this.$swal.fire('Saved', '', 'Success')
+      this.$http.get('/report/' + this.report.beginDate + "/" + this.report.endDate, {
+        'Content-Type': 'blob',
+        responseType: "arraybuffer",
+      }).then((response) => {
+        const url = URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute(
+            'download',
+            `xisobot.xlsx`
+        )
+        document.body.appendChild(link)
+        link.click()
       })
     }
 
