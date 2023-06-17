@@ -2,44 +2,57 @@
   <div>
     <!--        v-model="activeTab"-->
 
-    <VTabs background-color="#16B1FF" next-icon="account"
-        show-arrows
-    >
-      <VTab
-          v-for="item in tabs"
-          :key="item.icon"
-          :value="item.tab"
-      >
-        <VIcon
-            size="20"
-            start
-            :icon="item.icon"
-        />
-        {{ item.title }}
-      </VTab>
-    </VTabs>
-    <VDivider />
-
+<!--    <VTabs background-color="#FFFFFFFF"-->
+<!--        show-arrows-->
+<!--    >-->
+<!--      <VTab-->
+<!--          v-for="item in tabs"-->
+<!--          :key="item.icon"-->
+<!--          :value="item.tab"-->
+<!--      >-->
+<!--        <VIcon-->
+<!--            icon="mdi-domain"-->
+<!--        />-->
+<!--        {{ item.title }}-->
+<!--      </VTab>-->
+<!--    </VTabs>-->
+<!--    <VDivider />-->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <router-link class="nav-link active" id="home-tab" data-toggle="tab" to="/account/home" role="tab" aria-controls="home" aria-selected="false">Profile</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link " id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="profile" aria-selected="true">Xavfsizlik</router-link>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="/contact" role="tab" aria-controls="contact" aria-selected="false">Ruxsatnoma</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">  <AccountSettingsAccount /> </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">   <AccountSettingsNotification /> </div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> <AccountSettingsNotification /> </div>
+    </div>
     <!--        v-model="activeTab"-->
 
-    <VWindow
-        class="mt-5 disable-tab-transition"
-    >
-      <!-- Account -->
-      <VWindowItem value="account">
-        <AccountSettingsAccount />
-      </VWindowItem>
+<!--    <VWindow-->
+<!--        class="mt-5 disable-tab-transition"-->
+<!--    >-->
+<!--      &lt;!&ndash; Account &ndash;&gt;-->
+<!--      <VWindowItem value="account">-->
+<!--        <AccountSettingsAccount />-->
+<!--      </VWindowItem>-->
 
-      <!-- Security -->
-      <VWindowItem value="security">
-        <AccountSettingsSecurity />
-      </VWindowItem>
+<!--      &lt;!&ndash; Security &ndash;&gt;-->
+<!--      <VWindowItem value="security">-->
+<!--        <AccountSettingsSecurity />-->
+<!--      </VWindowItem>-->
 
-      <!-- Notification -->
-      <VWindowItem value="notification">
-        <AccountSettingsNotification />
-      </VWindowItem>
-    </VWindow>
+<!--      &lt;!&ndash; Notification &ndash;&gt;-->
+<!--      <VWindowItem value="notification">-->
+<!--        <AccountSettingsNotification />-->
+<!--      </VWindowItem>-->
+<!--    </VWindow>-->
   </div>
 </template>
 

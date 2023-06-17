@@ -1,11 +1,13 @@
 <template>
-  <VCard title="Recent Devices">
+  <VCard>
+
     <VCardText>
-      We need permission from your browser to show notifications.
-      <a href="javascript:void(0)">Request Permission</a>
+      <h5 class="m-3">Ruxsatlar</h5>
+
+     <p class="m-3">Siz dasturdan foydalanuvchilarga ruxsat berishinggiz mumkin.</p>
     </VCardText>
 
-    <VTable class="text-no-wrap">
+    <table class="table table-hover ">
       <thead>
       <tr>
         <th scope="col">
@@ -31,48 +33,31 @@
           {{ device.type }}
         </td>
         <td>
-          <VCheckbox v-model="device.email" />
+          <input class="form-check-input" v-model="device.email" type="checkbox" value=""  required>
         </td>
         <td>
-          <VCheckbox v-model="device.browser" />
+          <input class="form-check-input" v-model="device.browser" type="checkbox" value=""  required>
         </td>
         <td>
-          <VCheckbox v-model="device.app" />
+          <input class="form-check-input" v-model="device.app" type="checkbox" value=""  required>
         </td>
       </tr>
       </tbody>
-    </VTable>
-    <VDivider />
+    </table>
 
     <VCardText>
-      <VForm @submit.prevent="() => {}">
-        <p class="text-base font-weight-medium">
-          When should we send you notifications?
-        </p>
-
-        <VRow>
-          <VCol
-              cols="12"
-              sm="6"
-          >
-            <VSelect
-                v-model="selectedNotification"
-                mandatory
-                :items="['Only when I\'m online', 'Anytime']"
-            />
-          </VCol>
-        </VRow>
-
+      <VForm @submit.prevent="() => {}" class="m-3">
         <div class="d-flex flex-wrap gap-4 mt-4">
-          <VBtn type="submit">
-            Save Changes
+          <VBtn type="submit" color="#9155FDFF"
+                variant="tonal" style="color:white">
+            Saqlash
           </VBtn>
           <VBtn
-              color="secondary"
-              variant="tonal"
               type="reset"
+              color="#E2E6EAFF"
+              variant="tonal"
           >
-            Reset
+            Qayta o'rnatish
           </VBtn>
         </div>
       </VForm>
@@ -81,7 +66,7 @@
 </template>
 
 <script>
-const recentDevices = [
+const recentDevice = [
   {
     type: 'New for you',
     email: true,
@@ -113,6 +98,7 @@ export default {
   data() {
     return {
       selectedNotification: 'Only when I\'m online',
+      recentDevices: recentDevice
     }
   },
 }

@@ -12,12 +12,16 @@ import axiosHttp from "./axios";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // import Vuetify from "./plugins/vuetify";
 // import 'vuetify/dist/vuetify.min.css'
 
 import './scss/app.scss';
 Vue.use(Antd);
-
+Vue.use(BootstrapVue)
 Vue.use(VueSweetalert2);
 
 Vue.config.productionTip = false

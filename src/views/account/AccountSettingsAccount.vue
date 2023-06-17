@@ -2,27 +2,26 @@
   <VRow>
     <VCol cols="12">
       <VCard title="Account Details">
-        <VCardText class="d-flex">
+        <VCardText class="d-flex ml-3">
           <!-- 👉 Avatar -->
-          <v-avatar
-              rounded="lg"
-              size="100"
-              class="me-6"
-              :image="accountDataLocal.avatarImg"
-          />
-
+          <VAvatar style="margin-right: 15px"
+                   rounded="0"
+                   size="120"
+          >
+            <VImg
+                src="https://demos.themeselection.com/materio-vuetify-vuejs-laravel-admin-template-free/demo/images/1.png?d79cbd6eda5ee96bfdfc8773ab6c1ee7"></VImg>
+          </VAvatar>
           <!-- 👉 Upload Photo -->
-          <form class="d-flex flex-column justify-center gap-5">
-            <div class="d-flex flex-wrap gap-2">
-              <VBtn
-                  color="primary"
+          <form class="d-flex flex-column justify-center gap-3" style="margin-top: 25px">
+            <div class="d-flex flex-wrap gap-3">
+              <VBtn color="#9155FDFF"
               >
                 <!--                  @click=""-->
                 <VIcon
                     icon="mdi-cloud-upload-outline"
                     class="d-sm-none"
                 />
-                <span class="d-none d-sm-block">Upload new photo</span>
+                <span class="d-none d-sm-block">Yangi rasm yuklang</span>
               </VBtn>
 
               <input
@@ -34,13 +33,13 @@
                   @input="changeAvatar"
               >
 
-              <VBtn
-                  type="reset"
-                  color="error"
-                  variant="tonal"
-                  @click="resetAvatar"
+              <VBtn class="btn btn-outline-danger"
+                    type="reset"
+                    color="error"
+                    outlined="true"
+                    @click="resetAvatar"
               >
-                <span class="d-none d-sm-block">Reset</span>
+                <span class="d-none d-sm-block">Qayta o'rnatish</span>
                 <VIcon
                     icon="mdi-refresh"
                     class="d-sm-none"
@@ -49,12 +48,12 @@
             </div>
 
             <p class="text-body-1 mb-0">
-              Allowed JPG, GIF or PNG. Max size of 800K
+              Ruxsat berilgan JPG, GIF yoki PNG. Maksimal hajmi 800K
             </p>
           </form>
         </VCardText>
 
-        <VDivider />
+        <VDivider/>
 
         <VCardText>
           <!-- 👉 Form -->
@@ -65,10 +64,18 @@
                   md="6"
                   cols="12"
               >
-                <VTextField
-                    v-model="accountDataLocal.firstName"
-                    label="First Name"
-                />
+<!--                <VTextField-->
+<!--                    type="text"-->
+<!--                    v-model="accountDataLocal.firstName"-->
+<!--                    label="First Name"-->
+<!--                />-->
+                <div class="col-md-12 mb-3">
+                  <label for="validationTooltip01" class="mb-2">Ism</label>
+                  <input type="text" class="form-control mx-md-6" id="validationTooltip01" placeholder="Isminggizni kiriting" v-model="accountDataLocal.firstName" required>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
               </VCol>
 
               <!-- 👉 Last Name -->
@@ -76,10 +83,13 @@
                   md="6"
                   cols="12"
               >
-                <VTextField
-                    v-model="accountDataLocal.lastName"
-                    label="Last Name"
-                />
+                <div class="col-md-12 mb-3">
+                  <label for="validationTooltip01" class="mb-2">Familya</label>
+                  <input type="text" class="form-control mx-md-6" id="validationTooltip01" placeholder="Familanggizni kiriting" v-model="accountDataLocal.firstName" required>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
               </VCol>
 
               <!-- 👉 Email -->
@@ -87,11 +97,18 @@
                   cols="12"
                   md="6"
               >
-                <VTextField
-                    v-model="accountDataLocal.email"
-                    label="E-mail"
-                    type="email"
-                />
+<!--                <VTextField-->
+<!--                    v-model="accountDataLocal.email"-->
+<!--                    label="E-mail"-->
+<!--                    type="email"-->
+
+                <div class="col-md-12 mb-3">
+                  <label for="validationTooltip01" class="mb-2">Email</label>
+                  <input type="email" class="form-control mx-md-6" id="validationTooltip01" placeholder="Emailinggizni kiriting" v-model="accountDataLocal.firstName" required>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
               </VCol>
 
               <!-- 👉 Organization -->
@@ -99,10 +116,16 @@
                   cols="12"
                   md="6"
               >
-                <VTextField
-                    v-model="accountDataLocal.org"
-                    label="Organization"
-                />
+<!--                <VTextField-->
+<!--                    v-model="accountDataLocal.org"-->
+<!--                    label="Organization"-->
+                <div class="col-md-12 mb-3">
+                  <label for="validationTooltip01" class="mb-2">Telefon raqam</label>
+                  <input type="number" class="form-control mx-md-6" id="validationTooltip01" placeholder="Telefon raqamini kiriting" v-model="accountDataLocal.firstName" required>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
               </VCol>
 
               <!-- 👉 Phone -->
@@ -110,109 +133,51 @@
                   cols="12"
                   md="6"
               >
-                <VTextField
-                    v-model="accountDataLocal.phone"
-                    label="Phone Number"
-                />
+<!--                <VTextField-->
+<!--                    v-model="accountDataLocal.phone"-->
+<!--                    label="Phone Number"-->
+                <div class="col-md-12 mb-3">
+                  <label class="mb-2" for="inlineFormCustomSelectPref">Jinsi</label>
+                  <select class="form-control mx-md-6" id="inlineFormCustomSelectPref">
+                    <option selected>Tanlang...</option>
+                    <option value="1">Erkak</option>
+                    <option value="2">Ayol</option>
+                  </select>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
+                </div>
               </VCol>
 
               <!-- 👉 Address -->
               <VCol
                   cols="12"
-                  md="6"
-              >
-                <VTextField
-                    v-model="accountDataLocal.address"
-                    label="Address"
-                />
-              </VCol>
-
-              <!-- 👉 State -->
-              <VCol
-                  cols="12"
-                  md="6"
-              >
-                <VTextField
-                    v-model="accountDataLocal.state"
-                    label="State"
-                />
-              </VCol>
-
-              <!-- 👉 Zip Code -->
-              <VCol
-                  cols="12"
-                  md="6"
-              >
-                <VTextField
-                    v-model="accountDataLocal.zip"
-                    label="Zip Code"
-                />
-              </VCol>
-
-              <!-- 👉 Country -->
-              <VCol
-                  cols="12"
-                  md="6"
-              >
-                <VSelect
-                    v-model="accountDataLocal.country"
-                    label="Country"
-                    :items="['USA', 'Canada', 'UK', 'India', 'Australia']"
-                />
-              </VCol>
-
-              <!-- 👉 Language -->
-              <VCol
-                  cols="12"
-                  md="6"
-              >
-                <VSelect
-                    v-model="accountDataLocal.language"
-                    label="Language"
-                    :items="['English', 'Spanish', 'Arabic', 'Hindi', 'Urdu']"
-                />
-              </VCol>
-
-              <!-- 👉 Timezone -->
-              <VCol
-                  cols="12"
-                  md="6"
-              >
-                <VSelect
-                    v-model="accountDataLocal.timezone"
-                    label="Timezone"
-                    :items="timezones"
-                    :menu-props="{ maxHeight: 200 }"
-                />
-              </VCol>
-
-              <!-- 👉 Currency -->
-              <VCol
-                  cols="12"
-                  md="6"
-              >
-                <VSelect
-                    v-model="accountDataLocal.currency"
-                    label="Currency"
-                    :items="currencies"
-                    :menu-props="{ maxHeight: 200 }"
-                />
+                  md="6">
+              <div class="col-md-12 mb-3">
+                <label for="validationTooltip01" class="mb-2">First name</label>
+                <input type="text" class="form-control mx-md-6" id="validationTooltip01" placeholder="First name" v-model="accountDataLocal.firstName" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
               </VCol>
 
               <!-- 👉 Form Actions -->
               <VCol
                   cols="12"
                   class="d-flex flex-wrap gap-4"
+
               >
-                <VBtn>Save changes</VBtn>
+                <VBtn color="#9155FDFF">O'zgarishlarni saqlash</VBtn>
 
                 <VBtn
-                    color="secondary"
+                    color="#FF4081"
                     variant="tonal"
                     type="reset"
                     @click.prevent="resetForm"
+
                 >
-                  Reset
+                  Qayta o'rnatish
                 </VBtn>
               </VCol>
             </VRow>
@@ -225,20 +190,14 @@
       <!-- 👉 Deactivate Account -->
       <VCard title="Deactivate Account">
         <VCardText>
-          <div>
-            <VCheckbox
-                v-model="isAccountDeactivated"
-                label="I confirm my account deactivation"
-            />
+          <div class="form-check">
+            <input class="form-check-input" v-model="isAccountDeactivate" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Men hisobimning o'chirilganligini tasdiqlayman
+            </label>
           </div>
 
-          <VBtn
-              :disabled="!isAccountDeactivated"
-              color="error"
-              class="mt-3"
-          >
-            Deactivate Account
-          </VBtn>
+          <button type="button" aria-pressed="!isAccountDeactivated" class="btn btn-danger mt-3">Hisobni o'chirish</button>
         </VCardText>
       </VCard>
     </VCol>
@@ -263,86 +222,24 @@ const accountData = {
   currency: 'USD',
 }
 
-// const refInputEl = ref()
-
-
-const timezone = [
-  '(GMT-11:00) International Date Line West',
-  '(GMT-11:00) Midway Island',
-  '(GMT-10:00) Hawaii',
-  '(GMT-09:00) Alaska',
-  '(GMT-08:00) Pacific Time (US & Canada)',
-  '(GMT-08:00) Tijuana',
-  '(GMT-07:00) Arizona',
-  '(GMT-07:00) Chihuahua',
-  '(GMT-07:00) La Paz',
-  '(GMT-07:00) Mazatlan',
-  '(GMT-07:00) Mountain Time (US & Canada)',
-  '(GMT-06:00) Central America',
-  '(GMT-06:00) Central Time (US & Canada)',
-  '(GMT-06:00) Guadalajara',
-  '(GMT-06:00) Mexico City',
-  '(GMT-06:00) Monterrey',
-  '(GMT-06:00) Saskatchewan',
-  '(GMT-05:00) Bogota',
-  '(GMT-05:00) Eastern Time (US & Canada)',
-  '(GMT-05:00) Indiana (East)',
-  '(GMT-05:00) Lima',
-  '(GMT-05:00) Quito',
-  '(GMT-04:00) Atlantic Time (Canada)',
-  '(GMT-04:00) Caracas',
-  '(GMT-04:00) La Paz',
-  '(GMT-04:00) Santiago',
-  '(GMT-03:30) Newfoundland',
-  '(GMT-03:00) Brasilia',
-  '(GMT-03:00) Buenos Aires',
-  '(GMT-03:00) Georgetown',
-  '(GMT-03:00) Greenland',
-  '(GMT-02:00) Mid-Atlantic',
-  '(GMT-01:00) Azores',
-  '(GMT-01:00) Cape Verde Is.',
-  '(GMT+00:00) Casablanca',
-  '(GMT+00:00) Dublin',
-  '(GMT+00:00) Edinburgh',
-  '(GMT+00:00) Lisbon',
-  '(GMT+00:00) London',
-]
-
-const currency = [
-  'USD',
-  'EUR',
-  'GBP',
-  'AUD',
-  'BRL',
-  'CAD',
-  'CNY',
-  'CZK',
-  'DKK',
-  'HKD',
-  'HUF',
-  'INR',
-]
-
 export default {
   name: "AccountSettingsAccount",
   data() {
     return {
       isAccountDeactivated: false,
       accountDataLocal: structuredClone(accountData),
-      timezones: timezone,
-      currencies: currency,
     }
   },
   methods: {
-    resetForm(){
+    resetForm() {
       this.accountDataLocal.value = structuredClone(accountData)
     },
-    resetAvatar(){
+    resetAvatar() {
       accountDataLocal.value.avatarImg = accountData.avatarImg
     },
     changeAvatar(file) {
       const fileReader = new FileReader()
-      const { files } = file.target
+      const {files} = file.target
       if (files && files.length) {
         fileReader.readAsDataURL(files[0])
         fileReader.onload = () => {
@@ -357,6 +254,32 @@ export default {
 
 </script>
 
-<!--<style scoped="true">-->
+<style>
 
-<!--</style>-->
+.form-control {
+  height: 46px;
+}
+/*.mt-3{*/
+/*  background-color: #FF8A80;*/
+/*  border-color: #FF8A80;*/
+/*}*/
+
+.form-check-label {
+  font-family: unset;
+  font-size: 18px;
+  margin: 4px;
+  font-weight: 500;
+}
+
+.form-check {
+  height: 50px;
+}
+
+
+.form-check-input[type=checkbox] {
+   border-radius: 0.25em;
+   width: 22px;
+   height: 22px;
+ }
+
+</style>

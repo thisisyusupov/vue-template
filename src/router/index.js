@@ -87,6 +87,17 @@ let routes = [
 		path: '/',
 		name: 'Sign-In',
 		component: () => import('../views/Sign-In.vue'),
+	},,
+	{
+		path: '/account/home',
+		name: 'Home',
+		component: () => import('../views/account/AccountSettingsAccount'),
+	},,
+	{
+		path: '/account/profile',
+		name: 'Security',
+		layout: "dashboard",
+		component: () => import('../views/account/AccountSettingsSecurity'),
 	},
 	{
 		path: '/sign-up',
