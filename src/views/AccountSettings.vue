@@ -2,7 +2,7 @@
   <div>
     <!--        v-model="activeTab"-->
 
-    <VTabs
+    <VTabs background-color="#16B1FF" next-icon="account"
         show-arrows
     >
       <VTab

@@ -31,6 +31,7 @@ Vue.prototype.$eventBus = new Vue();
 
 // import Vue from 'vue'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
+// import './plugins/vuetify/index.js' // path to vuetify export
 
 Vue.use(vuetify)
 
