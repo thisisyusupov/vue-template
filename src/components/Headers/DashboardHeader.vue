@@ -1,5 +1,5 @@
 <template>
-
+	
 	<!-- Main Sidebar -->
 	<component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
 
@@ -28,8 +28,8 @@
 
 				<!-- Header Control Column -->
 				<a-col :span="24" :md="18" class="header-control">
+          <UserProfile style="margin-left: 1%;"></UserProfile>
 
-          <UserProfile></UserProfile>
 					<!-- Header Control Buttons -->
 					<a-dropdown :trigger="['click']" overlayClassName="header-notifications-dropdown" :getPopupContainer="() => wrapper">
 						<a-badge count="4">
@@ -40,8 +40,7 @@
 								</svg>
 							</a>
 						</a-badge>
-
-						<a-list item-layout="horizontal" class="header-notifications-list" :data-source="notificationsData" slot="overlay">
+            <a-list item-layout="horizontal" class="header-notifications-list" :data-source="notificationsData" slot="overlay">
 							<a-list-item slot="renderItem" slot-scope="item">
 								<a-list-item-meta>
 									<template #description>
@@ -59,7 +58,7 @@
 									<a-avatar v-else
 										shape="square"
 										slot="avatar"  v-html="item.svg"/>
-
+									
 								</a-list-item-meta>
 							</a-list-item>
 						</a-list>
@@ -72,13 +71,8 @@
 					<a-button type="link" class="sidebar-toggler" @click="$emit('toggleSidebar', ! sidebarCollapsed) , resizeEventHandler()">
 						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
 					</a-button>
-<!--					<router-link to="/sign-in" class="btn-sign-in" @click="e => e.preventDefault()">-->
-<!--						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--							<path fill-rule="evenodd" clip-rule="evenodd" d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM12 7C12 8.10457 11.1046 9 10 9C8.89543 9 8 8.10457 8 7C8 5.89543 8.89543 5 10 5C11.1046 5 12 5.89543 12 7ZM9.99993 11C7.98239 11 6.24394 12.195 5.45374 13.9157C6.55403 15.192 8.18265 16 9.99998 16C11.8173 16 13.4459 15.1921 14.5462 13.9158C13.756 12.195 12.0175 11 9.99993 11Z" fill="#111827"/>-->
-<!--						</svg>-->
-<!--						<span>Sign In</span>-->
-<!--					</router-link>-->
-<!--					&lt;!&ndash; / Header Control Buttons &ndash;&gt;-->
+
+          <!-- / Header Control Buttons -->
 
 					<!-- Header Search Input -->
 					<a-input-search class="header-search" :class="searchLoading ? 'loading' : ''" placeholder="Type here…" @search="onSearch" :loading='searchLoading'>
@@ -102,7 +96,9 @@
 
 <script>
 
-const notificationsData = [
+	import UserProfile from "@/components/Headers/UserProfile";
+
+  const notificationsData = [
 		{
 			title: 'New message from Sophie',
 			img: 'images/face-1.jpg',
@@ -130,11 +126,9 @@ const notificationsData = [
 		},
 	] ;
 
-import UserProfile from '@/components/Headers/UserProfile.vue';
-
 	export default ({
-    components: {
-      UserProfile
+    components : {
+      UserProfile,
     },
 		props: {
 			// Header fixed status.

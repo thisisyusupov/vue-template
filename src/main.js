@@ -1,15 +1,4 @@
-/*
-=========================================================
-Muse - Vue Ant Design Dashboard - v1.0.0
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/vue-ant-design-dashboard
-Copyright 2021 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import Vue from 'vue'
 import Antd from 'ant-design-vue';
@@ -22,15 +11,14 @@ import router from './router'
 import axiosHttp from "./axios";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VueSweetalert2 from 'vue-sweetalert2';
-import * as config from './config/config'
-// import './plugins/click-away'
-// import vuetify from './plugins/vuetify';
+
+// import Vuetify from "./plugins/vuetify";
+// import 'vuetify/dist/vuetify.min.css'
+
 import './scss/app.scss';
-import vue from "vue";
 Vue.use(Antd);
-config.initVueApp(vue);
+
 Vue.use(VueSweetalert2);
-// Vue.use(vuetify);
 
 Vue.config.productionTip = false
 
@@ -40,8 +28,14 @@ Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 Vue.prototype.$http = axiosHttp
 Vue.prototype.$eventBus = new Vue();
+
+// import Vue from 'vue'
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+
+Vue.use(vuetify)
+
 new Vue({
   router,
-  // vuetify,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')

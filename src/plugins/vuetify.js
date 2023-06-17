@@ -1,16 +1,11 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib/framework';
-import zhHans from 'vuetify/es5/locale/zh-Hans';
-// import '../assets/styles/material-icons.css';
+// src/plugins/vuetify.js
 
-Vue.use(Vuetify);
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
-export default new Vuetify({
-    lang: {
-        locales: { zhHans },
-        current: 'zhHans',
-    },
-    icons: {
-        iconfont: 'md',
-    },
-});
+Vue.use(Vuetify)
+
+const opts = {}
+
+export default new Vuetify(opts)

@@ -1,10 +1,3 @@
-<!--
-	This is the main page of the application, the layout component is used here,
-	and the router-view is passed to it.
-	Layout component is dynamically declared based on the layout for each route,
-	specified in routes list router/index.js .
- -->
-
 <template>
 	<div id="app">
 		<component :is="layout">
@@ -15,7 +8,14 @@
 
 <script>
 
+// import { VApp, VTabs, VTab } from 'vuetify/lib'
+
 	export default ({
+    // components: {
+    //   VApp,
+    //   VTabs,
+    //   VTab
+    // },
 		computed: {
 			// Sets components name based on current route's specified layout, defaults to
 			// <layout-default></layout-default> component.
@@ -24,7 +24,7 @@
 			}
 		},
 	})
-
+	
 </script>
 
 <style lang="scss">

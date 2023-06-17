@@ -30,6 +30,12 @@ let routes = [
 		component: () => import('../views/Layout.vue'),
 	},
 	{
+		path: '/account',
+		name: 'Account',
+		layout: "dashboard",
+		component: () => import('../views/AccountSettings.vue'),
+	},
+	{
 		path: '/tables',
 		name: 'Tables',
 		layout: "dashboard",
