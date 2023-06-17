@@ -10,7 +10,7 @@ let routes = [
 		component: () => import('../views/404.vue'),
 	},
 	{
-		path: '/',
+		path: '/home',
 		name: 'Home',
 		redirect: '/dashboard',
 	},
@@ -78,7 +78,7 @@ let routes = [
 		component: () => import('../views/Profile.vue'),
 	},
 	{
-		path: '/sign-in',
+		path: '/',
 		name: 'Sign-In',
 		component: () => import('../views/Sign-In.vue'),
 	},

@@ -1,4 +1,4 @@
-<!-- 
+<!--
 	This is the main page of the application, the layout component is used here,
 	and the router-view is passed to it.
 	Layout component is dynamically declared based on the layout for each route,
@@ -24,7 +24,7 @@
 			}
 		},
 	})
-	
+
 </script>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
-<!-- 
-	This is the sign up page, it uses the dashboard layout in: 
+<!--
+	This is the sign up page, it uses the dashboard layout in:
 	"./layouts/Default.vue" .
  -->
 
@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<!-- / Sign Up Image And Headings -->
-		
+
 		<!-- Sign Up Form -->
 		<a-card :bordered="false" class="card-signup header-solid h-full" :bodyStyle="{paddingTop: 0}">
 			<template #title>

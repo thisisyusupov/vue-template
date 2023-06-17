@@ -1,96 +1,154 @@
-<!-- 
-	This is the sign in page, it uses the dashboard layout in: 
+<!--
+	This is the sign in page, it uses the dashboard layout in:
 	"./layouts/Default.vue" .
  -->
 
 <template>
-	<div class="sign-in">
-		
-		<a-row type="flex" :gutter="[24,24]" justify="space-around" align="middle">
+  <div class="sign-in">
 
-			<!-- Sign In Form Column -->
-			<a-col :span="24" :md="12" :lg="{span: 12, offset: 0}" :xl="{span: 6, offset: 2}" class="col-form">
-				<h1 class="mb-15">Sign In</h1>
-				<h5 class="font-regular text-muted">Enter your email and password to sign in</h5>
+    <a-row type="flex" :gutter="[24,24]" justify="space-around" align="middle">
 
-				<!-- Sign In Form -->
-				<a-form
-					id="components-form-demo-normal-login"
-					:form="form"
-					class="login-form"
-					@submit="handleSubmit"
-					:hideRequiredMark="true"
-				>
-					<a-form-item class="mb-10" label="Email" :colon="false">
-						<a-input 
-						v-decorator="[
-						'email',
-						{ rules: [{ required: true, message: 'Please input your email!' }] },
-						]" placeholder="Email" />
-					</a-form-item>
-					<a-form-item class="mb-5" label="Password" :colon="false">
-						<a-input
-						v-decorator="[
+      <!-- Sign In Form Column -->
+      <a-col :span="24" :md="12" :lg="{span: 12, offset: 0}" :xl="{span: 6, offset: 2}" class="col-form">
+        <h1 class="mb-15">Tizimga kirish</h1>
+        <h5 class="font-regular text-muted">Kirish uchun elektron pochta va parolingizni kiriting !</h5>
+
+        <!-- Sign In Form -->
+        <a-form
+            id="components-form-demo-normal-login"
+            :form="form"
+            class="login-form"
+            @submit="handleSubmit"
+            :hideRequiredMark="true"
+        >
+          <a-form-item class="mb-10" label="Elektron pochta" :colon="false">
+            <a-input v-model="loginVM.username"
+                     v-decorator="[
+						'username',
+						{ rules: [{ required: true, message: 'Elektron pochat !' }] },
+						]" placeholder="Elektron pochtani kiriting !"/>
+          </a-form-item>
+          <a-form-item class="mb-5" label="Parol" :colon="false">
+            <a-input v-model="loginVM.password"
+                     v-decorator="[
 						'password',
-						{ rules: [{ required: true, message: 'Please input your password!' }] },
-						]" type="password" placeholder="Password" />
-					</a-form-item>
-					<a-form-item class="mb-10">
-    					<a-switch v-model="rememberMe" /> Remember Me
-					</a-form-item>
-					<a-form-item>
-						<a-button type="primary" block html-type="submit" class="login-form-button">
-							SIGN IN
-						</a-button>
-					</a-form-item>
-				</a-form>
-				<!-- / Sign In Form -->
+						{ rules: [{ required: true, message: 'Parol !' }] },
+						]" type="password" placeholder="Parolni kiriting !"/>
+          </a-form-item>
+          <a-form-item class="mb-10">
+            <a-switch v-model="this.rememberMe"></a-switch>
+            Meni eslaysizmi
+          </a-form-item>
+          <a-form-item>
+            <a-button type="primary" block html-type="submit" @click="login" class="login-form-button">
+              Tizimga kirish
+            </a-button>
+          </a-form-item>
+        </a-form>
+        <!-- / Sign In Form -->
 
-				<p class="font-semibold text-muted">Don't have an account? <router-link to="/sign-in" class="font-bold text-dark">Sign Up</router-link></p>
-			</a-col>
-			<!-- / Sign In Form Column -->
+        <p class="font-semibold text-muted">Hisobingiz yo'qmi?
+          <router-link to="/sign-in" class="font-bold text-dark"> Ro'yxatdan o'tish</router-link>
+        </p>
+      </a-col>
+      <!-- / Sign In Form Column -->
 
-			<!-- Sign In Image Column -->
-			<a-col :span="24" :md="12" :lg="12" :xl="12" class="col-img">
-				<img src="images/img-signin.jpg" alt="">
-			</a-col>
-			<!-- Sign In Image Column -->
+      <!-- Sign In Image Column -->
+      <a-col :span="24" :md="12" :lg="12" :xl="12" class="col-img" style="left: 4%">
+        <video id="noContextMenu" class="w-full lg:w-3/4 h-auto" width="329" height="500"
+               poster="https://content.presentermedia.com/images/presentermedia-images/animation_holder.jpg" loop=""
+               autoplay="" muted="">
+          <source
+              src="https://content.presentermedia.com/content/animsp/00018000/18388/construction_workers_shaking_hands_500_nwm.mp4">
+        </video>
+      </a-col>
+      <!-- Sign In Image Column -->
 
-		</a-row>
-		
-	</div>
+    </a-row>
+
+  </div>
 </template>
 
 <script>
 
-	export default ({
-		data() {
-			return {
-				// Binded model property for "Sign In Form" switch button for "Remember Me" .
-				rememberMe: true,
-			}
-		},
-		beforeCreate() {
-			// Creates the form and adds to it component's "form" property.
-			this.form = this.$form.createForm(this, { name: 'normal_login' });
-		},
-		methods: {
-			// Handles input validation after submission.
-			handleSubmit(e) {
-				e.preventDefault();
-				this.form.validateFields((err, values) => {
-					if ( !err ) {
-						console.log('Received values of form: ', values) ;
-					}
-				});
-			},
-		},
-	})
+import router from "../router";
+import {notification} from 'ant-design-vue';
+import axios from 'axios'
+import AccountService from "../account/AccountService";
+
+export default ({
+  data() {
+    return {
+      loginVM: {
+        username: '',
+        password: '',
+
+      },
+      // Binded model property for "Sign In Form" switch button for "Remember Me" .
+      rememberMe: true,
+    }
+  },
+  beforeCreate() {
+    // Creates the form and adds to it component's "form" property.
+    this.form = this.$form.createForm(this, {name: 'normal_login'});
+  },
+  methods: {
+
+    login() {
+      console.log(this.loginVM)
+      axios.post('auth/login', this.loginVM).then((res) => {
+        const token = res.data.token
+        if (this.rememberMe) {
+          console.log(this.rememberMe)
+          localStorage.setItem("market-token", token)
+        } else {
+          sessionStorage.setItem("market-token", token)
+        }
+        new AccountService(this.$route).retrieveAccount();
+        if (res.status === 200 && res.data.token !== "") {
+          notification['success']({
+            message: 'Siz tizimga muvaffaqiyatli kirdingiz !',
+            duration: 3,
+            style: {
+              color: 'white',
+              background: '#73FFA4FF'
+            }
+          });
+          router.push("/dashboard");
+        } else {
+          notification['warning']({
+            message: 'Login yoki parol xato',
+            duration: 3,
+            style: {
+              color: 'white',
+              background: '#C95D58FF'
+            }
+          });
+          // router.push("/sign-in")
+        }
+        console.log(res.data)
+      })
+    },
+
+    // Handles input validation after submission.
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log('Received values of form: ', values);
+        }
+      });
+    }
+  },
+  mounted() {
+
+  }
+})
 
 </script>
 
 <style lang="scss">
-	body {
-		background-color: #ffffff;
-	}
+body {
+  background-color: #ffffff;
+}
 </style>

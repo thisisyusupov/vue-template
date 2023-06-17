@@ -1,9 +1,17 @@
 import axios from "axios";
 
 const http = axios.create({
-    baseURL: 'http://3.83.148.111:9090/api/',
+    baseURL: 'http://localhost:9090/api/',
     headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        accept: "*/*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Credentials": true,
+        expires: "0",
+        "cache-control": "no-cache,no-store,max-age=0,must-revalidate",
+        pragma: "no-cache",
     }
 })
 

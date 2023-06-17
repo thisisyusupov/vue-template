@@ -22,12 +22,15 @@ import router from './router'
 import axiosHttp from "./axios";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VueSweetalert2 from 'vue-sweetalert2';
+import * as config from './config/config'
 // import './plugins/click-away'
-
+// import vuetify from './plugins/vuetify';
 import './scss/app.scss';
+import vue from "vue";
 Vue.use(Antd);
-
+config.initVueApp(vue);
 Vue.use(VueSweetalert2);
+// Vue.use(vuetify);
 
 Vue.config.productionTip = false
 
@@ -39,5 +42,6 @@ Vue.prototype.$http = axiosHttp
 Vue.prototype.$eventBus = new Vue();
 new Vue({
   router,
+  // vuetify,
   render: h => h(App)
 }).$mount('#app')
