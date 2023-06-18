@@ -19,13 +19,13 @@
 <!--    <VDivider />-->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <router-link class="nav-link active" id="home-tab" data-toggle="tab" to="/account/home" role="tab" aria-controls="home" aria-selected="false">Profile</router-link>
+        <router-link class="nav-link " id="home-tab" data-toggle="tab" to="/account/home" role="tab" aria-controls="home" aria-selected="false"><i class="fas fa-user-shield"></i> Profile</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link " id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="profile" aria-selected="true">Xavfsizlik</router-link>
+        <router-link class="nav-link active" id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-unlock"></i> Xavfsizlik</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="/contact" role="tab" aria-controls="contact" aria-selected="false">Ruxsatnoma</a>
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="/contact" role="tab" aria-controls="contact" aria-selected="false"> <i class="fas fa-shield-alt"></i> Ruxsatnoma</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">

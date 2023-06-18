@@ -16,8 +16,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-// import Vuetify from "./plugins/vuetify";
-// import 'vuetify/dist/vuetify.min.css'
+
 
 import './scss/app.scss';
 Vue.use(Antd);
@@ -32,10 +31,8 @@ Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 Vue.prototype.$http = axiosHttp
 Vue.prototype.$eventBus = new Vue();
-
-// import Vue from 'vue'
-import vuetify from '@/plugins/vuetify' // path to vuetify export
-// import './plugins/vuetify/index.js' // path to vuetify export
+require('@/assets/css/fontawesome.min.css')
+import vuetify from '@/plugins/vuetify'
 
 Vue.use(vuetify)
 
