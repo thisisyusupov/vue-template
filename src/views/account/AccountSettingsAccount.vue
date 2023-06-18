@@ -153,13 +153,14 @@
               <VCol
                   cols="12"
                   md="6">
-              <div class="col-md-12 mb-3">
-                <label for="validationTooltip01" class="mb-2">First name</label>
-                <input type="text" class="form-control mx-md-6" id="validationTooltip01" placeholder="First name" v-model="accountDataLocal.firstName" required>
-                <div class="valid-tooltip">
-                  Looks good!
+                <div class="col-md-12 mb-3">
+                  <label for="validationTooltip01" class="mb-2">Adress</label>
+                  <input type="text" placeholder="Adress" class="form-control mx-md-6" id="inlineFormCustomSelectPref"
+                         required>
+                  <div class="valid-tooltip">
+                    Looks good!
+                  </div>
                 </div>
-              </div>
               </VCol>
 
               <!-- 👉 Form Actions -->

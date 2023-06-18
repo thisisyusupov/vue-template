@@ -75,13 +75,10 @@ let routes = [
 		component: () => import('../views/RTL.vue'),
 	},
 	{
-		path: '/Profile',
-		name: 'Profile',
+		path: '/admin-panel',
+		name: 'Admin Panel',
 		layout: "dashboard",
-		meta: {
-			layoutClass: 'layout-profile',
-		},
-		component: () => import('../views/Profile.vue'),
+		component: () => import('../views/AdminPanel.vue'),
 	},
 	{
 		path: '/',
