@@ -1,64 +1,25 @@
 <template>
   <div>
-    <!--        v-model="activeTab"-->
-
-<!--    <VTabs background-color="#FFFFFFFF"-->
-<!--        show-arrows-->
-<!--    >-->
-<!--      <VTab-->
-<!--          v-for="item in tabs"-->
-<!--          :key="item.icon"-->
-<!--          :value="item.tab"-->
-<!--      >-->
-<!--        <VIcon-->
-<!--            icon="mdi-domain"-->
-<!--        />-->
-<!--        {{ item.title }}-->
-<!--      </VTab>-->
-<!--    </VTabs>-->
-<!--    <VDivider />-->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <router-link class="nav-link " id="home-tab" data-toggle="tab" to="/account/home" role="tab" aria-controls="home" aria-selected="false"><i class="fas fa-user-shield"></i> Profile</router-link>
+        <router-link class="nav-link active" id="home-tab" data-toggle="tab"  to="/account/home" role="tab" aria-controls="account" aria-selected="false"><i class="fas fa-user-shield"></i> Profile</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link active" id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-unlock"></i> Xavfsizlik</router-link>
+        <router-link class="nav-link" id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="security" aria-selected="false"><i class="fas fa-unlock"></i> Xavfsizlik</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="/contact" role="tab" aria-controls="contact" aria-selected="false"> <i class="fas fa-shield-alt"></i> Ruxsatnoma</a>
+        <router-link class="nav-link" id="contact-tab" data-toggle="tab" to="/account/permission" role="tab" aria-controls="permission" aria-selected="false"> <i class="fas fa-shield-alt"></i> Ruxsatnoma</router-link>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">  <AccountSettingsAccount /> </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">   <AccountSettingsNotification /> </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> <AccountSettingsNotification /> </div>
+      <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="home-tab">  <AccountSettingsAccount /> </div>
+      <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="profile-tab">   <AccountSettingsSecurity /> </div>
+      <div class="tab-pane fade" id="permission" role="tabpanel" aria-labelledby="contact-tab"> <AccountSettingsNotification /> </div>
     </div>
-    <!--        v-model="activeTab"-->
-
-<!--    <VWindow-->
-<!--        class="mt-5 disable-tab-transition"-->
-<!--    >-->
-<!--      &lt;!&ndash; Account &ndash;&gt;-->
-<!--      <VWindowItem value="account">-->
-<!--        <AccountSettingsAccount />-->
-<!--      </VWindowItem>-->
-
-<!--      &lt;!&ndash; Security &ndash;&gt;-->
-<!--      <VWindowItem value="security">-->
-<!--        <AccountSettingsSecurity />-->
-<!--      </VWindowItem>-->
-
-<!--      &lt;!&ndash; Notification &ndash;&gt;-->
-<!--      <VWindowItem value="notification">-->
-<!--        <AccountSettingsNotification />-->
-<!--      </VWindowItem>-->
-<!--    </VWindow>-->
   </div>
 </template>
 
 <script>
-
-// import { useRoute } from 'vue-router'
 
 
 
@@ -101,17 +62,18 @@ export default {
     }
   },
   methods: {
-    // setup() {
-      // const route = useRoute()
-      // function pushWithQuery(query) {
-      //   router.push({
-      //     name: 'search',
-      //     query: {
-      //       ...route.query,
-      //     },
-      //   })
-      // }
-    // },
+    changeTab(id){
+      if (id === 1){
+        var element1 = document.querySelector('#account');
+        element1.classList.add('show active');
+      }else if (id === 2) {
+        var element2 = document.querySelector('#security');
+        element2.classList.add('show active');
+      }else{
+        var element3 = document.querySelector('#permission');
+        element3.classList.add('show active');
+      }
+    }
   }
 
 }

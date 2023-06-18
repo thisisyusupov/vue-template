@@ -91,13 +91,20 @@ let routes = [
 	{
 		path: '/account/home',
 		name: 'Home',
+		layout: 'dashboard',
 		component: () => import('../views/account/AccountSettingsAccount'),
-	},,
+	},
 	{
 		path: '/account/profile',
 		name: 'Security',
 		layout: "dashboard",
 		component: () => import('../views/account/AccountSettingsSecurity'),
+	},
+	{
+		path: '/account/permission',
+		name: 'Security',
+		layout: "dashboard",
+		component: () => import('../views/account/AccountSettingsNotification'),
 	},
 	{
 		path: '/sign-up',
