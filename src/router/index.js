@@ -78,7 +78,13 @@ let routes = [
 		path: '/admin-panel',
 		name: 'Admin Panel',
 		layout: "dashboard",
-		component: () => import('../views/AdminPanel.vue'),
+		component: () => import('../views/admin-panel/AdminPanel.vue'),
+	},
+	{
+		path: '/admin-panel/add',
+		name: 'Admin Panel',
+		layout: "dashboard",
+		component: () => import('../views/admin-panel/AdminPanelAdd.vue'),
 	},
 	{
 		path: '/',

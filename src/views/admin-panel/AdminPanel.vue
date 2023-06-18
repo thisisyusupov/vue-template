@@ -67,8 +67,8 @@ export default ({
   data() {
     return {
       sellingList: [],
-      link: "/selling/add",
-      header: "Sotilgan mahsulotlar ro'yxati",
+      link: "/admin-panel/add",
+      header: "Foydalanuvchilar ro'yxati",
       table2Columns: table2Columns,
     }
   },

@@ -2,13 +2,13 @@
   <div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <router-link class="nav-link active" id="home-tab" data-toggle="tab"  to="/account/home" role="tab" aria-controls="account" aria-selected="false"><i class="fas fa-user-shield"></i> Profile</router-link>
+        <router-link class="nav-link active" id="home-tab" data-toggle="tab"  to="/account/home" role="tab" aria-controls="account" aria-selected="false"><img style="width: 25px; height: 25px" src="@/assets/images/profile.gif"> Profile</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="security" aria-selected="false"><i class="fas fa-unlock"></i> Xavfsizlik</router-link>
+        <router-link class="nav-link" id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="security" aria-selected="false"><img style="width: 25px; height: 25px" src="@/assets/images/password.gif"> Xavfsizlik</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" id="contact-tab" data-toggle="tab" to="/account/permission" role="tab" aria-controls="permission" aria-selected="false"> <i class="fas fa-shield-alt"></i> Ruxsatnoma</router-link>
+        <router-link class="nav-link" id="contact-tab" data-toggle="tab" to="/account/permission" role="tab" aria-controls="permission" aria-selected="false"><img style="width: 25px; height: 25px" src="@/assets/images/shield.gif"> Ruxsatnoma</router-link>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
