@@ -31,7 +31,6 @@ Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 Vue.prototype.$http = axiosHttp
 Vue.prototype.$eventBus = new Vue();
-require('@/assets/css/fontawesome.min.css')
 import vuetify from '@/plugins/vuetify'
 
 Vue.use(vuetify)

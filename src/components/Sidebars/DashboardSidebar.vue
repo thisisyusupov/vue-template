@@ -208,3 +208,23 @@ export default ({
 })
 
 </script>
+
+<style>
+
+.label {
+  text-decoration: none;
+
+}
+
+.label:visited {
+  text-decoration: none;
+}
+
+.label:hover {
+  text-decoration: none;
+}
+
+.label:active {
+  text-decoration: none;
+}
+</style>
