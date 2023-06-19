@@ -35,4 +35,51 @@ export default class AccountService {
                 this.router.push("/")
             })
     }
+
+    hasAnyAuthority(authorities){
+        if (typeof authorities === 'string'){
+            authorities = [authorities];
+        }
+        if (!authorities && !this.userAuthorities){
+            return false;
+        }
+        for (let i=0; i<authorities.length; i++){
+            if (this.userAuthorities.include(authorities[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    hasAnyAuthorityAndAuth(authorities){
+        if (typeof authorities === 'string'){
+            authorities = [authorities];
+        }
+        if (!authorities && !this.userAuthorities){
+            const token = localStorage.getItem("market-token") || sessionStorage.getItem("market-token");
+            if (!store.getters.account && !store.getters.logon && token){
+                this.retrieveAccount()
+            }else {
+                return new Promise(resolve => {
+                    resolve(false)
+                })
+            }
+        }
+        for (let i=0; i<authorities.length; i++){
+            if (this.userAuthorities.include(authorities[i])){
+                return new Promise(resolve => {
+                    resolve(true)
+                })
+            }
+        }
+        return new Promise(resolve => {
+            resolve(false)
+        })
+    }
+    get authenticated(){
+        return store.getters.authenticated
+    }
+    get userAuthorities(){
+        return store.getters.authorities
+    }
 }

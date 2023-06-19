@@ -86,6 +86,26 @@
 							</a-list-item>
 						</a-list>
 					</a-dropdown>
+
+          <a-dropdown  placement="topRight">
+            <a class="ant-dropdown-link" @click.prevent>
+              <img style="height: 35px; width: 35px" src="@/assets/images/exchange-unscreen.gif">
+            </a>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item>
+                  <div style="width: 12rem;">
+                    <ul class="list-group list-group-flush" id="cards">
+                      <li class="list-group-item"><img src="@/assets/images/man.png">{{usd.Ccy}}       {{usd.Rate}}</li>
+                      <li class="list-group-item"><img src="@/assets/images/gmail.png">{{rubl.Ccy}}       {{rubl.Rate}}</li>
+                      <li class="list-group-item"><img src="@/assets/images/switch.png">{{euro.Ccy}}       {{euro.Rate}}</li>
+                    </ul>
+                  </div>
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
+
 					<a-button type="link" ref="secondarySidebarTriggerBtn" @click="$emit('toggleSettingsDrawer', true)">
             <img style="height: 30px; width: 30px" src="@/assets/images/settings.gif">
 					</a-button>
@@ -169,6 +189,21 @@
 		},
 		data() {
 			return {
+        usd: {
+          Rate: '',
+          Diff: '',
+          Ccy: ''
+        },
+        rubl: {
+          Rate: '',
+          Diff: '',
+          Ccy: ''
+        },
+        euro: {
+          Rate: '',
+          Diff: '',
+          Ccy: ''
+        },
 				// Fixed header/sidebar-footer ( Affix component ) top offset.
 				top: 0,
 
@@ -180,6 +215,14 @@
 			}
 		},
 		methods: {
+      getCurrency() {
+        this.$http.get('/currency').then(res => {
+          this.usd = res.data[0][0]
+          this.euro = res.data[1][0]
+          this.rubl= res.data[2][0]
+          console.log(this.currency)
+        })
+      },
 			resizeEventHandler(){
 				this.top = this.top ? 0 : -0.01 ;
 				// To refresh the header if the window size changes.
@@ -196,6 +239,7 @@
 		created() {
 			// Registering window resize event listener to fix affix elements size
 			// error while resizing.
+      this.getCurrency();
 			window.addEventListener("resize", this.resizeEventHandler);
 		},
 		destroyed() {

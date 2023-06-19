@@ -7,11 +7,11 @@
 
     <a-row :gutter="24" type="flex">
       <a-col :span="24" class="mb-24">
-          <SwappingSquaresSpinner v-if="loading" style="margin-left: 35%; margin-top:7%; margin-bottom: 23%; "
-                                  :animation-duration="1000"
-                                  :size="155"
-                                  color="#ff1d5e"
-          />
+        <AtomSpinner v-if="loading" style="margin-left: 39%; margin-top:10%; margin-bottom: 23%; "
+            :animation-duration="1000"
+            :size="130"
+            color="#ff1d5e"
+        />
         <VCard v-else>
           <VForm >
             <VCardText>
@@ -83,10 +83,11 @@
 <script>
 
 import { SwappingSquaresSpinner  } from 'epic-spinners'
-
+import { AtomSpinner } from 'epic-spinners'
 export default ({
   components: {
-    SwappingSquaresSpinner
+    SwappingSquaresSpinner,
+    AtomSpinner
   },
   data() {
     return {

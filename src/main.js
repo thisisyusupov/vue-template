@@ -32,8 +32,26 @@ Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 Vue.prototype.$http = axiosHttp
 Vue.prototype.$eventBus = new Vue();
 import vuetify from '@/plugins/vuetify'
+import AccountService from "./account/AccountService";
 
 Vue.use(vuetify)
+
+router.beforeEach((to, from, next)=>{
+  if (!to.matched.length){
+    next('/not found')
+  }
+  if (to.meta && to.meta.authorities && to.meta.authorities.length > 0){
+    new AccountService(router).hasAuthorityAndAuth(to.meta.authorities).then(value =>{
+      if (!value){
+        sessionStorage.setItem("request-url", to.fullPath)
+        next("/forbidden")
+      }else {
+        next();
+      }
+    })
+  }else
+    next();
+})
 
 new Vue({
   router,

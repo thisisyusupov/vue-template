@@ -95,16 +95,27 @@ export default ({
   methods: {
 
     login() {
-      console.log(this.loginVM)
-      axios.post('auth/login', this.loginVM).then((res) => {
+      axios.post('http://localhost:9090/api/auth/login', this.loginVM , {
+        headers: {
+          'Content-type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          accept: "*/*",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": true,
+          expires: "0",
+          "cache-control": "no-cache,no-store,max-age=0,must-revalidate",
+          pragma: "no-cache",
+        }
+      }).then((res) => {
         const token = res.data.token
         if (this.rememberMe) {
           console.log(this.rememberMe)
-          localStorage.setItem("market-token", token)
+          localStorage.setItem("token", token)
         } else {
-          sessionStorage.setItem("market-token", token)
+          sessionStorage.setItem("token", token)
         }
-        new AccountService(this.$route).retrieveAccount();
+        // new AccountService(this.$route).retrieveAccount();
         if (res.status === 200 && res.data.token !== "") {
           notification['success']({
             message: 'Siz tizimga muvaffaqiyatli kirdingiz !',
