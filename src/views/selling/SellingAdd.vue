@@ -57,6 +57,23 @@
                     md="6"
                 >
                   <div class="col-md-12 mb-3">
+                    <label class="mb-2" for="validationTooltip01">To'lov turi</label>
+                    <select v-model:value="selling.paymentTypeId" class="form-control mx-md-6" id="validationTooltip01">
+                      <option selected>Tanlang...</option>
+                      <option value="1">Naqd</option>
+                      <option value="2">Nasiya</option>
+                      <option value="3">Avans</option>
+                    </select>
+                    <div class="valid-tooltip">
+                      Looks good!
+                    </div>
+                  </div>
+                </VCol>
+                <VCol
+                    cols="12"
+                    md="6"
+                >
+                  <div class="col-md-12 mb-3">
                     <label class="mb-2" for="validationTooltip01">Mahsulot turi</label>
                     <select v-model:value="selling.productTypeId" class="form-control mx-md-6" id="validationTooltip01">
                       <option selected>Tanlang...</option>
@@ -69,12 +86,14 @@
                     </div>
                   </div>
                 </VCol>
+              </VRow>
+              <VRow>
                 <VCol
                     cols="12"
                     md="6"
                 >
                   <div class="col-md-12 mb-3">
-                    <label class="mb-2" for="validationTooltip01">O'lchov turi</label>
+                    <label class="mb-2" for="validationTooltip01">O'lchov birliki</label>
                     <select v-model="selling.unitTypeId" class="form-control mx-md-6" id="validationTooltip01">
                       <option selected>Tanlang...</option>
                       <option value="1">Dona</option>
@@ -86,8 +105,6 @@
                     </div>
                   </div>
                 </VCol>
-              </VRow>
-              <VRow>
                 <VCol
                     cols="12"
                     md="6"
@@ -102,13 +119,15 @@
                     </div>
                   </div>
                 </VCol>
+              </VRow>
+              <VRow>
                 <VCol
                     cols="12"
                     md="6"
                 >
                   <div class="col-md-12">
                     <label for="validationTooltip01" class="mb-2">Narxi</label>
-                    <input v-model="selling.cost"  @change="addCost" type="number" placeholder="Narxi"
+                    <input v-model="selling.cost" @change="addCost" type="number" placeholder="Narxi"
                            class="form-control mx-md-6" id="validationTooltip01"
                            required>
                     <div class="valid-tooltip">
@@ -116,8 +135,6 @@
                     </div>
                   </div>
                 </VCol>
-              </VRow>
-              <VRow>
                 <VCol
                     cols="12"
                     md="6"

@@ -1,21 +1,37 @@
 <template>
   <div>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <router-link class="nav-link active" id="home-tab" data-toggle="tab"  to="/account/home" role="tab" aria-controls="account" aria-selected="false"><img style="width: 25px; height: 25px" src="@/assets/images/profile.gif"> Profile</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" id="profile-tab" data-toggle="tab" to="/account/profile" role="tab" aria-controls="security" aria-selected="false"><img style="width: 25px; height: 25px" src="@/assets/images/password.gif"> Xavfsizlik</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" id="contact-tab" data-toggle="tab" to="/account/permission" role="tab" aria-controls="permission" aria-selected="false"><img style="width: 25px; height: 25px" src="@/assets/images/shield.gif"> Ruxsatnoma</router-link>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="home-tab">  <AccountSettingsAccount /> </div>
-      <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="profile-tab">   <AccountSettingsSecurity /> </div>
-      <div class="tab-pane fade" id="permission" role="tabpanel" aria-labelledby="contact-tab"> <AccountSettingsNotification /> </div>
-    </div>
+    <TabView class="tabview-custom">
+      <TabPanel>
+        <template #header>
+          <div class="m-2" style="font-weight:600;">
+            <img style="width: 25px; height: 25px" src="@/assets/images/profile.gif"> <span class="mt-1">Profile</span>
+          </div>
+        </template>
+        <p>
+          <AccountSettingsAccount />
+        </p>
+      </TabPanel>
+      <TabPanel>
+        <template #header>
+          <div class="m-2" style="font-weight:600;">
+            <img style="width: 25px; height: 25px" src="@/assets/images/password.gif"> Xavfsizlik
+          </div>
+        </template>
+        <p>
+          <AccountSettingsSecurity />
+        </p>
+      </TabPanel>
+      <TabPanel>
+        <template #header>
+          <div class="m-2" style="font-weight:600;">
+            <img style="width: 25px; height: 25px" src="@/assets/images/shield.gif"> Ruxsatnoma
+          </div>
+        </template>
+        <p>
+          <AccountSettingsNotification />
+        </p>
+      </TabPanel>
+    </TabView>
   </div>
 </template>
 
@@ -26,7 +42,8 @@
 import AccountSettingsAccount from '@/views/account/AccountSettingsAccount.vue'
 import AccountSettingsNotification from '@/views/account/AccountSettingsNotification.vue'
 import AccountSettingsSecurity from '@/views/account/AccountSettingsSecurity.vue'
-
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 
 // tabs
 const tab = [
@@ -50,6 +67,8 @@ const tab = [
 export default {
   name: "AccountSettings",
   components: {
+    TabView,
+    TabPanel,
     AccountSettingsAccount,
     AccountSettingsNotification,
     AccountSettingsSecurity

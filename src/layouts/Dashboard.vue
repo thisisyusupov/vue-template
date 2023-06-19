@@ -1,10 +1,19 @@
-<!-- 
-	This is the dashboard layout, used in dashboard, tables, billing and profile pages.
- -->
-
 <template>
-	<div>
+<!--  <div v-if="loading">-->
+<!--    <SwappingSquaresSpinner-->
+<!--        :animation-duration="1000"-->
+<!--        :size="65"-->
+<!--        color="#ff1d5e"-->
+<!--    />-->
+<!--  </div>-->
+<!--  <template>-->
 
+  <div>
+<!--        <SwappingSquaresSpinner-->
+<!--            :animation-duration="1000"-->
+<!--            :size="65"-->
+<!--            color="#ff1d5e"-->
+<!--        />-->
 		<!-- Dashboard Layout -->
 		<a-layout class="layout-dashboard" id="layout-dashboard" :class="[navbarFixed ? 'navbar-fixed' : '', ! sidebarCollapsed ? 'has-sidebar' : '', layoutClass]">
 			
@@ -71,6 +80,8 @@
 		<!-- / Dashboard Layout -->
 
 	</div>
+<!--  </template>-->
+
 </template>
 
 <script>
@@ -79,9 +90,10 @@
 	import DashboardHeader from '../components/Headers/DashboardHeader' ;
 	import DashboardFooter from '../components/Footers/DashboardFooter' ;
 	import DashboardSettingsDrawer from '../components/Sidebars/DashboardSettingsDrawer' ;
-
+  import { SwappingSquaresSpinner  } from 'epic-spinners'
 	export default ({
 		components: {
+      SwappingSquaresSpinner,
 			DashboardSidebar,
 			DashboardHeader,
 			DashboardFooter,
@@ -90,6 +102,7 @@
 		data() {
 			return {
 				// Sidebar collapsed status.
+        loading: true,
 				sidebarCollapsed: false,
 				
 				// Main sidebar color.
