@@ -1,5 +1,3 @@
-
-
 import Vue from 'vue'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
@@ -19,6 +17,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 
 import './scss/app.scss';
+
+
 Vue.use(Antd);
 Vue.use(BootstrapVue)
 Vue.use(VueSweetalert2);
