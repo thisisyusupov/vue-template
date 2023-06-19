@@ -267,7 +267,7 @@ export default {
 
 .form-check-label {
   font-family: unset;
-  font-size: 18px;
+  font-size: 110%;
   margin: 4px;
   font-weight: 500;
 }
