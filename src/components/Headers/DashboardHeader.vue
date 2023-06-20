@@ -1,34 +1,36 @@
 <template>
 
-	<!-- Main Sidebar -->
-	<component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
+  <!-- Main Sidebar -->
+  <component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
 
-		<!-- Layout Header -->
-		<a-layout-header>
-			<a-row type="flex">
+    <!-- Layout Header -->
+    <a-layout-header>
+      <a-row type="flex">
 
-				<!-- Header Breadcrumbs & Title Column -->
-				<a-col :span="24" :md="6">
+        <!-- Header Breadcrumbs & Title Column -->
+        <a-col :span="24" :md="6">
 
-					<!-- Header Breadcrumbs -->
-					<a-breadcrumb>
-						<a-breadcrumb-item><router-link to="/"> Pages</router-link></a-breadcrumb-item>
-						<a-breadcrumb-item>{{ this.$route.name }}</a-breadcrumb-item>
-					</a-breadcrumb>
-					<!-- / Header Breadcrumbs -->
+          <!-- Header Breadcrumbs -->
+          <a-breadcrumb>
+            <a-breadcrumb-item>
+              <router-link to="/"> Pages</router-link>
+            </a-breadcrumb-item>
+            <a-breadcrumb-item>{{ this.$route.name }}</a-breadcrumb-item>
+          </a-breadcrumb>
+          <!-- / Header Breadcrumbs -->
 
-					<!-- Header Page Title -->
-					<div class="ant-page-header-heading">
-						<span class="ant-page-header-heading-title">{{ this.$route.name }}</span>
-					</div>
-					<!-- / Header Page Title -->
+          <!-- Header Page Title -->
+          <div class="ant-page-header-heading">
+            <span class="ant-page-header-heading-title">{{ this.$route.name }}</span>
+          </div>
+          <!-- / Header Page Title -->
 
-				</a-col>
-				<!-- / Header Breadcrumbs & Title Column -->
+        </a-col>
+        <!-- / Header Breadcrumbs & Title Column -->
 
-				<!-- Header Control Column -->
-				<a-col :span="24" :md="18" class="header-control">
-          <a-dropdown>
+        <!-- Header Control Column -->
+        <a-col :span="24" :md="18" class="header-control">
+          <a-dropdown placement="bottomRight">
             <a class="ant-dropdown-link" @click.prevent>
               <VueToyFace
                   :size='55'
@@ -38,67 +40,116 @@
               ></VueToyFace>
             </a>
             <template #overlay>
-              <a-menu>
-                <a-menu-item>
-                  <div style="width: 12rem;">
-                    <ul class="list-group list-group-flush" id="cards">
-                      <li class="list-group-item"><router-link to="/account"><img src="@/assets/images/man.png"> Profile</router-link></li>
-                      <li class="list-group-item"><img src="@/assets/images/gmail.png">Inbox</li>
-                      <li class="list-group-item"><router-link to="/sign-in"><img src="@/assets/images/switch.png">Logout</router-link></li>
-                    </ul>
-                  </div>
-                </a-menu-item>
-              </a-menu>
+<!--              <a-menu>-->
+<!--              <a-menu-item>-->
+
+                  <VList style="width: 200%; margin-right: 30px; background-color: #FAFAFA">
+                    <a-list-item class="m-3">
+                      <a-list-item-meta
+                          description="Admin"
+                      >
+                        <template #title>
+                          <span>John Doe</span>
+                        </template>
+                        <template #avatar>
+                          <a-avatar style="width: 50px; height: 50px;"
+                              src="https://demos.themeselection.com/sneat-vuetify-vuejs-admin-template-free/demo/assets/avatar-1-19a9226d.png"/>
+                        </template>
+                      </a-list-item-meta>
+                    </a-list-item>
+
+                    <VDivider class="my-2"/>
+
+                    <!-- 👉 Profile -->
+                    <VListItem @click="toProfile">
+                      <img style="width: 25px;height: 25px; margin-right: 5%" src="@/assets/images/man.png">
+                      <VListItemTitle>Profile</VListItemTitle>
+                    </VListItem>
+
+
+                    <!-- Divider -->
+                    <VDivider class="my-2"/>
+
+                    <!-- 👉 Logout -->
+                    <VListItem @click="logout">
+
+                      <img style="width: 25px;height: 25px; margin-right: 5%" src="@/assets/images/switch.png">
+                      <VListItemTitle>Logout</VListItemTitle>
+                    </VListItem>
+                  </VList>
+<!--              </a-menu-item>-->
+<!--              </a-menu>-->
             </template>
           </a-dropdown>
 
 
-					<!-- Header Control Buttons -->
-					<a-dropdown :trigger="['click']" overlayClassName="header-notifications-dropdown" :getPopupContainer="() => wrapper">
-						<a-badge count="4">
-							<a class="ant-dropdown-link" @click="e => e.preventDefault()">
+          <!-- Header Control Buttons -->
+          <a-dropdown :trigger="['click']" overlayClassName="header-notifications-dropdown"
+                      :getPopupContainer="() => wrapper">
+            <a-badge count="4">
+              <a class="ant-dropdown-link" @click="e => e.preventDefault()">
                 <img style="width: 40px; height: 40px" src="@/assets/images/alarms.gif">
-									<path d="M10 2C6.68632 2 4.00003 4.68629 4.00003 8V11.5858L3.29292 12.2929C3.00692 12.5789 2.92137 13.009 3.07615 13.3827C3.23093 13.7564 3.59557 14 4.00003 14H16C16.4045 14 16.7691 13.7564 16.9239 13.3827C17.0787 13.009 16.9931 12.5789 16.7071 12.2929L16 11.5858V8C16 4.68629 13.3137 2 10 2Z" fill="#111827"/>
-									<path d="M10 18C8.34315 18 7 16.6569 7 15H13C13 16.6569 11.6569 18 10 18Z" fill="#111827"/>
-								</svg>
-							</a>
-						</a-badge>
-            <a-list item-layout="horizontal" class="header-notifications-list" :data-source="notificationsData" slot="overlay">
-							<a-list-item slot="renderItem" slot-scope="item">
-								<a-list-item-meta>
-									<template #description>
-										<svg width="50" height="50" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 6C11 5.44772 10.5523 5 10 5C9.44772 5 9 5.44772 9 6V10C9 10.2652 9.10536 10.5196 9.29289 10.7071L12.1213 13.5355C12.5118 13.9261 13.145 13.9261 13.5355 13.5355C13.9261 13.145 13.9261 12.5118 13.5355 12.1213L11 9.58579V6Z" fill="#111827"/>
-										</svg>
-										<span>{{ item.time }}</span>
-									</template>
-									<a slot="title" href="#">{{ item.title }}</a>
-									<a-avatar v-if="item.img"
-										slot="avatar"
-										shape="square"
-										:src="item.img"
-									/>
-									<a-avatar v-else
-										shape="square"
-										slot="avatar"  v-html="item.svg"/>
+                <path
+                    d="M10 2C6.68632 2 4.00003 4.68629 4.00003 8V11.5858L3.29292 12.2929C3.00692 12.5789 2.92137 13.009 3.07615 13.3827C3.23093 13.7564 3.59557 14 4.00003 14H16C16.4045 14 16.7691 13.7564 16.9239 13.3827C17.0787 13.009 16.9931 12.5789 16.7071 12.2929L16 11.5858V8C16 4.68629 13.3137 2 10 2Z"
+                    fill="#111827"/>
+                <path d="M10 18C8.34315 18 7 16.6569 7 15H13C13 16.6569 11.6569 18 10 18Z" fill="#111827"/>
+                </svg>
+              </a>
+            </a-badge>
+            <a-list item-layout="horizontal" class="header-notifications-list" :data-source="notificationsData"
+                    slot="overlay">
+              <a-list-item slot="renderItem" slot-scope="item">
+                <a-list-item-meta>
+                  <template #description>
+                    <svg width="50" height="50" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 6C11 5.44772 10.5523 5 10 5C9.44772 5 9 5.44772 9 6V10C9 10.2652 9.10536 10.5196 9.29289 10.7071L12.1213 13.5355C12.5118 13.9261 13.145 13.9261 13.5355 13.5355C13.9261 13.145 13.9261 12.5118 13.5355 12.1213L11 9.58579V6Z"
+                            fill="#111827"/>
+                    </svg>
+                    <span>{{ item.time }}</span>
+                  </template>
+                  <a slot="title" href="#">{{ item.title }}</a>
+                  <a-avatar v-if="item.img"
+                            slot="avatar"
+                            shape="square"
+                            :src="item.img"
+                  />
+                  <a-avatar v-else
+                            shape="square"
+                            slot="avatar" v-html="item.svg"/>
 
-								</a-list-item-meta>
-							</a-list-item>
-						</a-list>
-					</a-dropdown>
+                </a-list-item-meta>
+              </a-list-item>
+            </a-list>
+          </a-dropdown>
 
-          <a-dropdown  placement="topRight">
+          <a-dropdown placement="topRight">
             <a class="ant-dropdown-link" @click.prevent>
               <img style="height: 35px; width: 35px" src="@/assets/images/exchange-unscreen.gif">
             </a>
             <template #overlay>
               <a-menu>
                 <a-menu-item>
-                  <div style="width: 12rem;">
+                  <div style="width: 19rem;">
                     <ul class="list-group list-group-flush" id="cards">
-                      <li class="list-group-item"><img src="@/assets/images/man.png">{{usd.Ccy}}       {{usd.Rate}}</li>
-                      <li class="list-group-item"><img src="@/assets/images/gmail.png">{{rubl.Ccy}}       {{rubl.Rate}}</li>
-                      <li class="list-group-item"><img src="@/assets/images/switch.png">{{euro.Ccy}}       {{euro.Rate}}</li>
+                      <li class="list-group-item"><img src="@/assets/images/USA.png">{{ usd.Ccy }} <span
+                          style="margin: 7%;">{{ usd.Rate }} </span> <img v-if="usd.Diff > 0"
+                                                                          src="@/assets/images/oshish.png"><img v-else
+                                                                                                                src="@/assets/images/kamayish.png">
+                        {{ usd.Diff }}
+                      </li>
+                      <li class="list-group-item"><img src="@/assets/images/euro.png">{{ rubl.Ccy }} <span
+                          style="margin: 10%;"> {{ rubl.Rate }}</span> <img v-if="rubl.Diff > 0"
+                                                                            src="@/assets/images/oshish.png"><img v-else
+                                                                                                                  src="@/assets/images/kamayish.png">
+                        {{ rubl.Diff }}
+                      </li>
+                      <li class="list-group-item"><img src="@/assets/images/russia.png">{{ euro.Ccy }} <span
+                          style="margin: 7%;">  {{ euro.Rate }}</span> <img v-if="euro.Diff > 0"
+                                                                            src="@/assets/images/oshish.png"><img v-else
+                                                                                                                  src="@/assets/images/kamayish.png">
+                        {{ euro.Diff }}
+                      </li>
                     </ul>
                   </div>
                 </a-menu-item>
@@ -106,47 +157,57 @@
             </template>
           </a-dropdown>
 
-					<a-button type="link" ref="secondarySidebarTriggerBtn" @click="$emit('toggleSettingsDrawer', true)">
+          <a-button type="link" ref="secondarySidebarTriggerBtn" @click="$emit('toggleSettingsDrawer', true)">
             <img style="height: 30px; width: 30px" src="@/assets/images/settings.gif">
-					</a-button>
-					<a-button type="link" class="sidebar-toggler" @click="$emit('toggleSidebar', ! sidebarCollapsed) , resizeEventHandler()">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
-					</a-button>
+          </a-button>
+          <a-button type="link" class="sidebar-toggler"
+                    @click="$emit('toggleSidebar', ! sidebarCollapsed) , resizeEventHandler()">
+            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/>
+            </svg>
+          </a-button>
 
           <!-- / Header Control Buttons -->
 
-					<!-- Header Search Input -->
-					<a-input-search class="header-search" :class="searchLoading ? 'loading' : ''" placeholder="Type here…" @search="onSearch" :loading='searchLoading'>
-						<svg slot="prefix" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="#111827"/>
-						</svg>
-					</a-input-search>
-					<!-- / Header Search Input -->
+          <!-- Header Search Input -->
+          <a-input-search class="header-search" :class="searchLoading ? 'loading' : ''" placeholder="Type here…"
+                          @search="onSearch" :loading='searchLoading'>
+            <svg slot="prefix" width="16" height="16" viewBox="0 0 20 20" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z"
+                    fill="#111827"/>
+            </svg>
+          </a-input-search>
+          <!-- / Header Search Input -->
 
-				</a-col>
-				<!-- / Header Control Column -->
+        </a-col>
+        <!-- / Header Control Column -->
 
-			</a-row>
-		</a-layout-header>
-		<!--  /Layout Header -->
+      </a-row>
+    </a-layout-header>
+    <!--  /Layout Header -->
 
-	</component>
-	<!-- / Main Sidebar -->
+  </component>
+  <!-- / Main Sidebar -->
 
 </template>
 
 <script>
 
 
-  const notificationsData = [
-		{
-			title: 'New message from Sophie',
-			img: 'images/face-1.jpg',
-			time: '13 minutes ago',
-		},
-		{
-			title: 'New album by Travis Scott',
-			svg: `<svg width="20" height="20" viewBox="0 0 107 107" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+import router from "../../router";
+
+const notificationsData = [
+  {
+    title: 'New message from Sophie',
+    img: 'images/face-1.jpg',
+    time: '13 minutes ago',
+  },
+  {
+    title: 'New album by Travis Scott',
+    svg: `<svg width="20" height="20" viewBox="0 0 107 107" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<title>logo-spotify</title>
 					<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<g id="logo-spotify" fill="#2EBD59" fill-rule="nonzero">
@@ -154,112 +215,131 @@
 						</g>
 					</g>
 				</svg>`,
-			time: '1 day ago',
-		},
-		{
-			title: 'Payment completed',
-			svg: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    time: '1 day ago',
+  },
+  {
+    title: 'Payment completed',
+    svg: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill="#1890FF" d="M4 4C2.89543 4 2 4.89543 2 6V7H18V6C18 4.89543 17.1046 4 16 4H4Z"/>
 					<path fill="#1890FF" fill-rule="evenodd" clip-rule="evenodd" d="M18 9H2V14C2 15.1046 2.89543 16 4 16H16C17.1046 16 18 15.1046 18 14V9ZM4 13C4 12.4477 4.44772 12 5 12H6C6.55228 12 7 12.4477 7 13C7 13.5523 6.55228 14 6 14H5C4.44772 14 4 13.5523 4 13ZM9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14H10C10.5523 14 11 13.5523 11 13C11 12.4477 10.5523 12 10 12H9Z"/>
 				</svg>`,
-			time: '2 days ago',
-		},
-	] ;
-  import VueToyFace from "vue-toy-face";
-	export default ({
-    components: { VueToyFace },
-		props: {
-			// Header fixed status.
-			navbarFixed: {
-				type: Boolean,
-				default: false,
-			},
+    time: '2 days ago',
+  },
+];
+import VueToyFace from "vue-toy-face";
 
-			// Sidebar collapsed status.
-			sidebarCollapsed: {
-				type: Boolean,
-				default: false,
-			},
+export default ({
+  components: {VueToyFace},
+  props: {
+    // Header fixed status.
+    navbarFixed: {
+      type: Boolean,
+      default: false,
+    },
 
-			// Header notifications data.
-			notificationsData: {
-				type: Array,
-				default: () => notificationsData,
-			},
-		},
-		data() {
-			return {
-        usd: {
-          Rate: '',
-          Diff: '',
-          Ccy: ''
-        },
-        rubl: {
-          Rate: '',
-          Diff: '',
-          Ccy: ''
-        },
-        euro: {
-          Rate: '',
-          Diff: '',
-          Ccy: ''
-        },
-				// Fixed header/sidebar-footer ( Affix component ) top offset.
-				top: 0,
+    // Sidebar collapsed status.
+    sidebarCollapsed: {
+      type: Boolean,
+      default: false,
+    },
 
-				// Search input loading status.
-				searchLoading: false,
+    // Header notifications data.
+    notificationsData: {
+      type: Array,
+      default: () => notificationsData,
+    },
+  },
+  data() {
+    return {
+      avatar1: 'https://demos.themeselection.com/sneat-vuetify-vuejs-admin-template-free/demo/assets/avatar-1-19a9226d.png',
+      usd: {
+        Rate: '',
+        Diff: '',
+        Ccy: ''
+      },
+      rubl: {
+        Rate: '',
+        Diff: '',
+        Ccy: ''
+      },
+      euro: {
+        Rate: '',
+        Diff: '',
+        Ccy: ''
+      },
+      // Fixed header/sidebar-footer ( Affix component ) top offset.
+      top: 0,
 
-				// The wrapper element to attach dropdowns to.
-				wrapper: document.body,
-			}
-		},
-		methods: {
-      getCurrency() {
-        this.$http.get('/currency').then(res => {
+      // Search input loading status.
+      searchLoading: false,
+
+      // The wrapper element to attach dropdowns to.
+      wrapper: document.body,
+    }
+  },
+  methods: {
+    getCurrency() {
+      this.$http.get('/currency').then(res => {
+        console.log(res.status)
+        if (res.status === 403) {
+          router.push("/");
+        } else {
           this.usd = res.data[0][0]
           this.euro = res.data[1][0]
-          this.rubl= res.data[2][0]
-          console.log(this.currency)
-        })
-      },
-			resizeEventHandler(){
-				this.top = this.top ? 0 : -0.01 ;
-				// To refresh the header if the window size changes.
-				// Reason for the negative value is that it doesn't activate the affix unless
-				// scroller is anywhere but the top of the page.
-			},
-			onSearch(value){
-			}
-		},
-		mounted: function(){
-			// Set the wrapper to the proper element, layout wrapper.
-			this.wrapper = document.getElementById('layout-dashboard') ;
-		},
-		created() {
-			// Registering window resize event listener to fix affix elements size
-			// error while resizing.
-      this.getCurrency();
-			window.addEventListener("resize", this.resizeEventHandler);
-		},
-		destroyed() {
-			// Removing window resize event listener.
-			window.removeEventListener("resize", this.resizeEventHandler);
-		},
-	})
+          this.rubl = res.data[2][0]
+        }
+        console.log(this.currency)
+      })
+    },
+    logout() {
+      localStorage.clear();
+      sessionStorage.clear();
+      router.push("/");
+    },
+    toProfile() {
+      router.push("/account");
+    },
+    resizeEventHandler() {
+      this.top = this.top ? 0 : -0.01;
+      // To refresh the header if the window size changes.
+      // Reason for the negative value is that it doesn't activate the affix unless
+      // scroller is anywhere but the top of the page.
+    },
+    onSearch(value) {
+    }
+  },
+  mounted: function () {
+    // Set the wrapper to the proper element, layout wrapper.
+    this.wrapper = document.getElementById('layout-dashboard');
+  },
+  created() {
+    // Registering window resize event listener to fix affix elements size
+    // error while resizing.
+    this.getCurrency();
+    window.addEventListener("resize", this.resizeEventHandler);
+  },
+  destroyed() {
+    // Removing window resize event listener.
+    window.removeEventListener("resize", this.resizeEventHandler);
+  },
+})
 
 </script>
 
 <style>
 ul li img {
 
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   width: 25px;
   height: 25px;
   margin: 8px;
 }
+
 #cards li {
   font-size: 18px;
 }
 
+.valyuta {
+  margin-right: 3px;
+}
 </style>

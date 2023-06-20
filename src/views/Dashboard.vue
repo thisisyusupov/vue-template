@@ -112,6 +112,7 @@
 
 	// Information card 2.
 	import CardInfo2 from '../components/Cards/CardInfo2' ;
+  import router from "../router";
 
 	// Counter Widgets stats
 	// const stats = [
@@ -289,11 +290,16 @@
     methods: {
       getSellingList() {
         this.$http.get('/statistics').then(res => {
-          this.stats = res.data
+          if (res === 403){
+            router.push("/")
+          }else{
+            this.stats = res.data
+          }
           console.log(res.data)
           console.log(this.stats)
         })
-      },
+      }
+
     },
     created() {
       this.getSellingList()
