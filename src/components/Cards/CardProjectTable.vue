@@ -1,12 +1,12 @@
 <template>
-				
+
 	<!-- Projects Table Card -->
 	<a-card :bordered="false" class="header-solid h-full" :bodyStyle="{padding: 0,}">
 		<template #title>
 			<a-row type="flex" align="middle">
 				<a-col :span="24" :md="12">
-					<h6>Projects</h6>			
-					<p>done this month <span class="text-primary">+40%</span></p>	
+					<h6>Projects</h6>
+					<p>done this month <span class="text-primary">+40%</span></p>
 				</a-col>
 				<a-col :span="24" :md="12" style="display: flex; align-items: center; justify-content: flex-end">
 					<a-radio-group v-model="projectHeaderBtns" size="small">

@@ -9,8 +9,9 @@
       <a-col :span="24" class="mb-24">
 
         <CardProjectTable2
-            :data="sellingList"
+            :data="admin"
             :columns="table2Columns"
+            :radios="radios"
             :link="link"
             :header="header"
         ></CardProjectTable2>
@@ -23,40 +24,60 @@
 
 // "Projects" table component.
 import CardProjectTable2 from '../../components/Cards/CardProjectTable2' ;
+import router from "../../router";
 
 
 const table2Columns = [
   {
-    title: 'LIST NUMBER',
-    dataIndex: 'listNumber',
-    scopedSlots: { customRender: 'listNumber' },
+    title: 'ID',
+    dataIndex: 'id',
+    class: 'font-semibold text-muted',
+  },
+    {
+    title: 'ISM',
+    dataIndex: 'name',
+    scopedSlots: { customRender: 'name' },
     width: 200,
   },
   {
-    title: 'DATE',
-    dataIndex: 'date',
+    title: 'FAMILYA',
+    dataIndex: 'family',
     class: 'font-semibold text-muted',
   },
   {
-    title: 'PAYMENT TYPE',
-    dataIndex: 'paymentType.name',
+    title: 'TELEFON RAQAMI',
+    dataIndex: 'phoneNumber',
     class: 'font-semibold text-muted text-sm',
   },
   {
-    title: 'PRODUCT TYPE',
-    scopedSlots: { customRender: 'productType' },
-    dataIndex: 'productType.name',
+    title: 'EMAIL',
+    scopedSlots: { customRender: 'gender' },
+    dataIndex: 'gender',
   },
   {
-    title: 'VALUE',
-    scopedSlots: { customRender: 'value' },
-    dataIndex: 'value',
+    title: 'ROLE',
+    scopedSlots: { customRender: 'role' },
+    dataIndex: 'role',
   },
   {
     title: '',
     scopedSlots: { customRender: 'editBtn' },
-    width: 50,
+
   },
+];
+
+const radio = [
+  {
+    title: 'BARCHASI',
+    status: 'ALL'
+  },  {
+    title: 'ACTIVE',
+    status: 'ACTIVE'
+  },
+  {
+    title: 'PASSIVE',
+    status: 'PASSIVE'
+  }
 ];
 
 
@@ -66,7 +87,8 @@ export default ({
   },
   data() {
     return {
-      sellingList: [],
+      adminList: [],
+      radios: radio,
       link: "/admin-panel/add",
       header: "Foydalanuvchilar ro'yxati",
       table2Columns: table2Columns,
@@ -74,12 +96,12 @@ export default ({
   },
   methods: {
     getSellingList() {
-      this.$http.get('/selling').then(res => {
-        this.sellingList = res.data
+      this.$http.get('/admin').then(res => {
+        this.adminList = res.data
         console.log(res.data)
-        console.log(this.sellingList)
+        console.log(this.adminList)
       })
-    },
+    }
   },
   created() {
     this.getSellingList()

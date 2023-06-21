@@ -27,8 +27,11 @@
                     <b-form-datepicker
                         v-model="report.beginDate"
                         placeholder="Tug'ilgan sana"
+                        dataformatas="YYYY-MM-DD"
+                        :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                         class="form-control mx-md-6"
                         id="datepicker-buttons"
+                        :state="true"
                         today-button
                         reset-button
                         close-button
@@ -45,8 +48,11 @@
                     <b-form-datepicker
                         v-model="report.endDate"
                         placeholder="Tug'ilgan sana"
+                        dataformatas="YYYY-MM-DD"
+                        :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                         class="form-control mx-md-6"
                         id="datepicker-buttons"
+                        :state="true"
                         today-button
                         reset-button
                         close-button
@@ -65,7 +71,8 @@
                 <VCol  cols="12"
                        md="3"
                 >
-                    <a-button type="primary" block html-type="submit" class="login-form-button" @click="download">
+                    <a-button  type="primary" block html-type="submit" class="login-form-button" @click="download">
+                      <img style="width:28px; height: 28px; margin-right: 5px" src="@/assets/images/download.gif">
                       DOWNLOAD
                     </a-button>
                 </VCol>

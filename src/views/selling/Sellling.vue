@@ -11,6 +11,7 @@
         <CardProjectTable2
             :data="sellingList"
             :columns="table2Columns"
+            :radios="radios"
             :link="link"
             :header="header"
         ></CardProjectTable2>
@@ -24,6 +25,23 @@
 // "Projects" table component.
 import CardProjectTable2 from '../../components/Cards/CardProjectTable2' ;
 
+const radio = [
+  {
+    title: 'BARCHASI',
+    status: 'ALL'
+  },  {
+    title: 'NAQD',
+    status: '1'
+  },
+  {
+    title: 'NASIYA',
+    status: '2'
+  },
+  {
+    title: 'AVANS',
+    status: '3'
+  }
+];
 
 const table2Columns = [
   {
@@ -66,6 +84,7 @@ export default ({
   },
   data() {
     return {
+      radios: radio,
       sellingList: [],
       link: "/selling/add",
       header: "Sotilgan mahsulotlar ro'yxati",
