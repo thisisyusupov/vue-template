@@ -34,6 +34,9 @@ Vue.prototype.$eventBus = new Vue();
 import vuetify from '@/plugins/vuetify'
 import AccountService from "./account/AccountService";
 
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
+
 Vue.use(vuetify)
 
 router.beforeEach((to, from, next)=>{

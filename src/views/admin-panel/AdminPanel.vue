@@ -9,7 +9,7 @@
       <a-col :span="24" class="mb-24">
 
         <CardProjectTable2
-            :data="admin"
+            :data="adminList"
             :columns="table2Columns"
             :radios="radios"
             :link="link"
@@ -35,29 +35,33 @@ const table2Columns = [
   },
     {
     title: 'ISM',
-    dataIndex: 'name',
+    dataIndex: 'firstName',
     scopedSlots: { customRender: 'name' },
     width: 200,
   },
   {
     title: 'FAMILYA',
-    dataIndex: 'family',
+    dataIndex: 'lastName',
     class: 'font-semibold text-muted',
   },
   {
     title: 'TELEFON RAQAMI',
-    dataIndex: 'phoneNumber',
+    dataIndex: 'login',
     class: 'font-semibold text-muted text-sm',
   },
   {
     title: 'EMAIL',
-    scopedSlots: { customRender: 'gender' },
-    dataIndex: 'gender',
+    scopedSlots: { customRender: 'email' },
+    dataIndex: 'email',
   },
   {
     title: 'ROLE',
     scopedSlots: { customRender: 'role' },
-    dataIndex: 'role',
+    dataIndex: 'systemRoleName',
+  },  {
+    title: 'STATUS',
+    scopedSlots: { customRender: 'status' },
+    dataIndex: 'status',
   },
   {
     title: '',
@@ -96,7 +100,7 @@ export default ({
   },
   methods: {
     getSellingList() {
-      this.$http.get('/admin').then(res => {
+      this.$http.get('/admin-list').then(res => {
         this.adminList = res.data
         console.log(res.data)
         console.log(this.adminList)

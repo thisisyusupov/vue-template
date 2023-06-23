@@ -11,7 +11,7 @@
       <!-- Sign In Form Column -->
       <a-col :span="24" :md="12" :lg="{span: 12, offset: 0}" :xl="{span: 6, offset: 2}" class="col-form">
         <h1 class="mb-15">Tizimga kirish</h1>
-        <h5 class="font-regular text-muted">Kirish uchun elektron pochta va parolingizni kiriting !</h5>
+        <h5 class="font-regular text-muted">Kirish uchun login va parolingizni kiriting !</h5>
 
         <!-- Sign In Form -->
         <a-form
@@ -21,19 +21,20 @@
             @submit="handleSubmit"
             :hideRequiredMark="true"
         >
-          <a-form-item class="mb-10" label="Elektron pochta" :colon="false">
-            <a-input v-model="loginVM.username"
-                     v-decorator="[
-						'username',
-						{ rules: [{ required: true, message: 'Elektron pochat !' }] },
-						]" placeholder="Elektron pochtani kiriting !"/>
+          <a-form-item class="mb-10" :colon="false">
+            <label class="mb-1">Login</label>
+            <the-mask type="text" placeholder="(99)123-45-67" v-model="loginVM.login" mask="(##)###-##-##"
+                   class="form-control mx-md-6"
+                      required></the-mask>
+            <div class="valid-tooltip">
+              Looks good!
+            </div>
           </a-form-item>
-          <a-form-item class="mb-5" label="Parol" :colon="false">
-            <a-input v-model="loginVM.password"
-                     v-decorator="[
-						'password',
-						{ rules: [{ required: true, message: 'Parol !' }] },
-						]" type="password" placeholder="Parolni kiriting !"/>
+          <a-form-item class="mb-5" :colon="false">
+            <label class="mb-1">Parol</label>
+            <the-mask v-model="loginVM.password" mask='XXXXX'
+                      class="form-control mx-md-6"
+                      type="password" placeholder="********"></the-mask>
           </a-form-item>
           <a-form-item class="mb-10">
             <a-switch v-model="this.rememberMe"></a-switch>
@@ -80,7 +81,7 @@ export default ({
   data() {
     return {
       loginVM: {
-        username: '',
+        login: '',
         password: '',
 
       },
@@ -95,7 +96,7 @@ export default ({
   methods: {
 
     login() {
-      axios.post('http://localhost:9090/api/auth/login', this.loginVM , {
+      axios.post('http://localhost:5050/api/auth/login', this.loginVM ,{mode:"no-cors"}, {
         headers: {
           'Content-type': 'application/json',
           "Access-Control-Allow-Origin": "*",
@@ -108,7 +109,8 @@ export default ({
           pragma: "no-cache",
         }
       }).then((res) => {
-        const token = res.data.token
+        const token = res.data.data.accessToken
+        console.log(token)
         if (this.rememberMe) {
           console.log(this.rememberMe)
           localStorage.setItem("token", token)
@@ -116,7 +118,7 @@ export default ({
           sessionStorage.setItem("token", token)
         }
         // new AccountService(this.$route).retrieveAccount();
-        if (res.status === 200 && res.data.token !== "") {
+        if (res.status === 200 && token !== "") {
           notification['success']({
             message: 'Siz tizimga muvaffaqiyatli kirdingiz !',
             duration: 3,

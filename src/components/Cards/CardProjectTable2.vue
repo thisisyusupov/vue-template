@@ -32,6 +32,12 @@
         </template>
       </a-space>
 
+      <template slot="status" slot-scope="status">
+        <a-tag class="tag-status" :class="status === 'ACTIVE' ? 'ant-tag-primary' : 'ant-tag-muted'">
+          {{ status }}
+        </a-tag>
+      </template>
+
       <template slot="company" slot-scope="company">
         <h6 class="m-0">
           <img :src="company.logo" width="25" style="margin-right: 10px;">

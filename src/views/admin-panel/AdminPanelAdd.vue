@@ -14,9 +14,9 @@
               >
                 <div class="col-md-12">
                   <label for="validationTooltip01" class="mb-2">Ism</label>
-                  <input type="text" placeholder="Ism kiriting" v-model="admin.name" class="form-control mx-md-6"
+                  <input type="text" placeholder="Ism kiriting" v-model="admin.firstName" class="form-control mx-md-6"
                          id="validationTooltip01"
-                         required>
+                            required>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -28,7 +28,7 @@
               >
                 <div class="col-md-12">
                   <label for="validationTooltip01" class="mb-2">Familya</label>
-                  <input type="text" placeholder="Familyani kiriting" v-model="admin.firstName"
+                  <input type="text" placeholder="Familyani kiriting" v-model="admin.lastName"
                          class="form-control mx-md-6" id="validationTooltip01"
                          required>
                   <div class="valid-tooltip">
@@ -60,8 +60,8 @@
                   <label class="mb-2" for="validationTooltip01">Jinsi</label>
                   <select class="form-control mx-md-6" v-model="admin.gender" id="validationTooltip01">
                     <option selected>Tanlang...</option>
-                    <option value="1">Erkak</option>
-                    <option value="2">Ayol</option>
+                    <option value="MAlE">Erkak</option>
+                    <option value="FEMALE">Ayol</option>
                   </select>
                   <div class="valid-tooltip">
                     Looks good!
@@ -175,9 +175,9 @@
                   <label class="mb-2" for="validationTooltip01">Tizimdagi ro'li</label>
                   <select class="form-control mx-md-6" v-model="admin.systemRoleName" id="validationTooltip01">
                     <option selected>Tanlang...</option>
-                    <option value="SUPER_ADMIN">Super Admin</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="FORM_MEMBER">Form Member</option>
+                    <option value="SYSTEM_ROLE_SUPER_ADMIN">Super Admin</option>
+                    <option value="SYSTEM_ROLE_ADMIN">Admin</option>
+                    <option value="SYSTEM_ROLE_FORM_MEMBER">Form Member</option>
                   </select>
                   <div class="valid-tooltip">
                     Looks good!
@@ -227,13 +227,12 @@
 
 <script>
 import router from "../../router";
-
 export default {
   data() {
     return {
       admin: {
         id: 0,
-        name: '',
+        lastName: '',
         firstName: '',
         fatherName: '',
         gender: '',

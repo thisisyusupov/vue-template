@@ -1,5 +1,5 @@
-<!-- 
-	This is the tables page, it uses the dashboard layout in: 
+<!--
+	This is the tables page, it uses the dashboard layout in:
 	"./layouts/Dashboard.vue" .
  -->
 
@@ -35,6 +35,9 @@
 				<CardProjectTable2
 					:data="table2Data"
 					:columns="table2Columns"
+          :radios="radios"
+          :link="link"
+          :header="header"
 				></CardProjectTable2>
 				<!-- / Projects Table Column -->
 
@@ -54,7 +57,7 @@
 
 	// "Projects" table component.
 	import CardProjectTable2 from '../components/Cards/CardProjectTable2' ;
-	
+
 	// "Authors" table list of columns and their properties.
 	const table1Columns = [
 		{
@@ -171,7 +174,7 @@
 			employed: '14/04/17',
 		},
 	];
-	
+
 	// "Projects" table list of columns and their properties.
 	const table2Columns = [
 		{
@@ -282,6 +285,9 @@
 		},
 		data() {
 			return {
+        radios: [],
+        header: '',
+        link: '',
 				// Associating "Authors" table data with its corresponding property.
 				table1Data: table1Data,
 
